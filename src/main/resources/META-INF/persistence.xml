@@ -1,0 +1,29 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <!--    jednostka utrwala, musi byc przynajmniej jedna w pliku-->
+    <persistence-unit name="myPersistenceUnit"
+
+                      transaction-type="RESOURCE_LOCAL" >
+        <!--                      dzieki temuy= bedziemy korzystac z tranzaakcji-->
+        <properties>
+            <!--            connection stringa z jdbc, w plikach xml trzeba &amp; -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cars?useSSL=false&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="root" />
+            <!--            driver-->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <!--            -->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+    <!--    •	none - nie rób nic przy deployu aplikacji;
+•	create - wygeneruj bazę danych na podstawie adnotacji encji, przy ponownym uruchomieniu nie nadpisuj zmian;
+•	drop-and-create - przy każdym deployu usunie wszystkie składowe bazy danych wynikające z adnotacji encji i utworzy je na nowo (utracimy wcześniej zapisane dane;
+•	drop - przy deployu aplikacji usunie wszystkie składowe bazy danych wynikające z adnotacji encji;
+-->
